@@ -18,3 +18,7 @@ def binary_search(arr,l,r,x):
             return binary_search(arr,mid+1, r,x)
     return -1
 
+#Adding a wrapper function because the question demands only list and search element to be passed in
+def binary_search_main(arr, x):
+    return binary_search(sorted(arr),0,len(arr)-1,x)
+
