@@ -37,4 +37,4 @@ def sum_of_even(n) :
 
 n=int(input("Enter a number : "))
 y=sum_of_even(n)
-print("Sum of first ",n," even numbers is = ",y
+print("Sum of first ",n," even numbers is = ",y)
