@@ -13,3 +13,33 @@ def main():
     open_csv()
 if __name__ == '__main__':
     main()
+
+    
+    
+#alternate
+import csv
+
+def CreateFile() :
+     fc=open("sports.csv","w+")
+     truthval= input("Do you want to enter another event ? (y/n) : ")
+     while truthval == "y" or truthval== "Y" :
+         fcwriter=csv.writer(fc,delimiter = "\t")
+         sname = input("enter name of sport : ")
+         competitions = input("enter competition : ")
+         prizes = input("enter the prizes won : ")
+         rec=[sname, competitions, prizes]
+         fcwriter.writerow(rec)
+         truthval= input("Do you want to enter records ? (y/n) : ")
+     fc.close()
+
+
+def csvPrinter() :
+    with open("sports.csv","r+",newline="\r\n") as fc :
+        fcreader=csv.reader(fc,delimiter = "\t")
+        for rec in fcreader :
+            print(rec)
+    
+    
+    
+CreateFile()
+csvPrinter()
