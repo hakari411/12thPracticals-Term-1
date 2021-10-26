@@ -58,3 +58,55 @@ elif operation_enter_data == "N":
 
 else:
     print("Please enter a valid option")
+    
+    
+    
+    
+ 
+
+
+
+
+#alternate
+import pickle
+
+
+def createfile() : 
+    fbw=open("student.dat","wb+")
+    truthval= input("Do you want to enter records ? (y/n) : ")
+    while True :
+        if truthval == "y" or truthval== "Y" :
+            name= input("enter name : ")
+            roll= int(input("enter rollno : "))
+            mark= int(input("enter marks : "))
+            tempL = [name, roll, mark]
+            finalL.append(tempL)
+            truthval= input("Do you want to enter records ? (y/n) : ")
+        elif truthval == "n" or truthval== "N" :
+            pickle.dump(finalL,fbw)
+            fbw.close()
+            print("file created")
+            break
+
+
+def searchfile() :
+     fb = open("student.dat","rb+")
+     fbr=pickle.load(fb)
+     tval = input("Do you want to search records ? (y/n) : ")
+     while True :
+          if tval == "y" or tval== "Y" :
+              rollsearch=int(input("Enter roll no : "))
+              for i in range (0,len(finalL)) :
+                  if fbr[i][1]==rollsearch :
+                      print(" Name is  : ",fbr[i][0])
+                      fb.seek(0)
+                  else :
+                      print("Record not found")
+                      fb.seek(0)
+          elif tval == "n" or tval== "N" :
+              fbr.close()
+              break
+
+finalL=[]
+createfile()
+searchfile()
