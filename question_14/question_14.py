@@ -31,3 +31,43 @@ def display_data_csv(empno):
             for i in res:
                 print(i)
 add_data_csv(1, 'ramesh', 10000)
+
+
+
+#alternate
+import csv
+
+def CreateFile() :
+     fc=open("employee.csv","w+")
+     truthval= input("Do you want to enter another record ? (y/n) : ")
+     while truthval == "y" or truthval== "Y" :
+         fcwriter=csv.writer(fc)
+         empno = int(input("enter employee number : "))
+         name = input("enter employee name : ")
+         sal = int(input("enter salary : "))
+         rec=[empno, name, sal]
+         fcwriter.writerow(rec)
+         truthval= input("Do you want to enter records ? (y/n) : ")
+     fc.close()
+
+
+def search() :
+    with open("employee.csv","r+",newline="\r\n") as fc :
+        fcreader=csv.reader(fc)
+        empsearch = int(input("Enter the employee number required : "))
+        global count
+        count=0
+        for rec in fcreader :
+            if int(rec[0])==int(empsearch) :
+                print("For EmpID = ",empsearch, " | Name : ",rec[1]," | Salary : ",rec[2])
+                count+=1
+                
+        if count ==0 :
+            print("employee not found")
+        
+        
+    
+    
+    
+CreateFile()
+search()
