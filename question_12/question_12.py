@@ -62,3 +62,53 @@ def update_record(empno):
     else:
         print("File not found")
 # update_record("Ajay")
+
+
+
+
+
+#alternate
+import pickle
+
+def CreateFile() :
+     tempD={}
+     fbw=open("emp.dat","wb+") 
+     truthval= input("Do you want to enter records ? (y/n) : ")
+     while truthval == "y" or truthval== "Y" :
+         emp_no = int(input("enter employee number : "))
+         ename = input("enter name : ")
+         sal = int(input("enter salary : "))
+         tempD['EmpNo'] = emp_no
+         tempD['EName'] = ename
+         tempD['Salary'] = sal
+         pickle.dump(tempD,fbw)
+         truthval= input("Do you want to enter records ? (y/n) : ")
+     fbw.close()
+       
+
+def IncSal() :
+    emp={}
+    fb=open("emp.dat","rb+")
+    try :
+        while True :
+            pos=fb.tell()
+            emp=pickle.load(fb)
+            if emp['EmpNo']==123 :
+                emp['Salary']+=5000
+                fb.seek(pos)
+                pickle.dump(emp,fb)
+    except EOFError :
+        fb.close()
+
+    fb=open("emp.dat","rb+")
+    fb.seek(0)
+    try :
+        while True :
+            emp=pickle.load(fb)
+            print(emp)
+    except EOFError :
+        fb.close()
+        
+
+CreateFile()
+IncSal()
